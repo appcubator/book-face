@@ -13,12 +13,15 @@ urlpatterns = patterns('webapp.pages',
                        url(r'^profile/(\d+)/$', 'user_profile'),
                        url(r'^Edit_profile/$', 'edit_profile'),
                        url(r'^All_users/$', 'all_users'),
+                       url(r'^Wall_post_Page/(\d+)/$', 'wall_post_page'),
                        )
 
 
 urlpatterns += patterns('webapp.form_receivers',
                         url('^__form_receiver/loginform/$', 'login'),
                         url('^__form_receiver/shortsignupform/$', 'sign_up'),
+                        url('^__form_receiver/create_wall_post/(\\d+)/$',
+                            'create_wall_post'),
                         url('^__form_receiver/edit_user/$', 'edit_user'),
                         )
 

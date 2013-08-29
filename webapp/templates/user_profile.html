@@ -58,6 +58,31 @@
         </div>
         </div>
     </div>
+    <!-- row -->
+    <div class="row hoff5">
+        <!-- column terminal -->
+        <form class="form-default hi8 span4 span4 offset2" action="{% url "webapp.form_receivers.create_wall_post" user.id %}" method="POST">  {% csrf_token %}
+              <label>  Text
+              </label>
+              <textarea placeholder="Text" name="text"></textarea>
+              <div class="form-error field-name-text"></div>
+              <input class="btn" type="submit" value="Submit">
+              <div class="form-error field-all"></div>
+            </form>
+    </div>
+    <!-- row -->
+    <div class="row hoff2">
+        <!-- column terminal -->
+        <div class="default-list hi46 span7 span7 offset2" style="position:relative;">  {% for obj in wall_posts %}
+                  <div class="row" style="display:block; position:relative; height:150px;">  <p class="node normal-text" style="; position: absolute; height: 45px; width:400px; top: 0px; left: 95px; text-align:left ">  {{ obj.text }}
+                    </p>
+                  </div>
+                  {% empty %}
+                  <div style="display:block; position:relative; height:150px;">  List is empty.
+                  </div>
+                  {% endfor %}
+                </div>
+    </div>
 {% endblock %}
 
 {% block footer %}

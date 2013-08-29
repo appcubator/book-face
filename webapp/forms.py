@@ -2,7 +2,7 @@
 
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm as LoginForm, UserCreationForm
-from webapp.models import User
+from webapp.models import User, Wall_post
 
 
 class ShortSignupForm(forms.Form):
@@ -34,6 +34,14 @@ class ShortSignupForm(forms.Form):
             0], " ".join(name_tokens[1:])
         user.save()
         return user
+
+
+class Create_Wall_post(forms.ModelForm):
+    text = forms.CharField(required=True)
+
+    class Meta:
+        model = Wall_post
+        fields = ('text',)
 
 
 class Edit_User(forms.ModelForm):

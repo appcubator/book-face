@@ -2,7 +2,7 @@
 
 from django.test import TestCase
 from django.test.client import Client
-from webapp.models import User
+from webapp.models import User, Wall_post
 
 
 class StaticPagesTestCase(TestCase):

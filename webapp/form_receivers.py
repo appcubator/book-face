@@ -9,8 +9,8 @@ from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from webapp.emailer import send_email, send_template_email
-from webapp.forms import Edit_User, LoginForm, ShortSignupForm
-from webapp.models import User
+from webapp.forms import Create_Wall_post, Edit_User, LoginForm, ShortSignupForm
+from webapp.models import User, Wall_post
 from webapp.utils import JsonResponse
 
 
@@ -38,6 +38,25 @@ def sign_up(request):
         auth_login(request, user)
 
         redirect_url = reverse('webapp.pages.user_profile', args=(None.id, ))
+        return JsonResponse(data={'redirect_to': redirect_url})
+
+    return JsonResponse(errors=form.errors)
+
+
+@require_POST
+def create_wall_post(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    form = Create_Wall_post(request.POST)
+    if form.is_valid():
+        wall_post = form.save(commit=False)
+
+        # set foreign keys
+        wall_post.writer = request.user
+        wall_post.wall_owner = user
+
+        wall_post.save()  # persist the object to the DB
+
+        redirect_url = reverse('webapp.pages.homepage')
         return JsonResponse(data={'redirect_to': redirect_url})
 
     return JsonResponse(errors=form.errors)
