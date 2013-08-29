@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block navbar %}
+<div class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/" id="brand-name">Bookface</a>
+    <ul class="nav" id="items">
+      <li><a href="{% url "webapp.pages.homepage" %}">Homepage</a></li>
+      {% if user.is_authenticated %}
+      <li class="logout-item pull-right"><a id="logout" href="{% url "django.contrib.auth.views.logout" %}">Logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <!-- row -->
+    <div class="row hoff2">
+        <!-- column terminal -->
+        <div class=" hi3 span5 span5 offset4" style="; text-align: center">  <h1 class="node header-light">  Welcome to Bookface
+          </h1>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <!-- column terminal -->
+        <div class=" hi2 span5 span5 offset4" style="; text-align: center">  <p class="node normal-text">  Connect with your friends and write on their walls
+              </p>
+            </div>
+    </div>
+    <!-- row -->
+    <div class="row hoff5">
+        <!-- column terminal -->
+        <div class=" hi20 span4 span4 offset1">  <img class="node img-height-fixed" src="https://www.filepicker.io/api/file/I74930CeTj5gLv1098jV">
+                </div>
+        <!-- column -->
+        <div class="span4 offset2">
+                <!-- row -->
+                <div class="row">
+                    <!-- column terminal -->
+                    <h1 class="node header-1 hi2 span3 span3" style="font-size:20px;">  Login
+                    </h1>
+                </div>
+                <!-- row -->
+                <div class="row hoff1">
+                    <!-- column terminal -->
+                    <form class="form-default hi14 span4 span4" action="{% url "webapp.form_receivers.login" %}" method="POST">  {% csrf_token %}
+                          <label>  Email or username
+                          </label>
+                          <input type="text" placeholder="Email or username" name="username">
+                          <div class="form-error field-name-username"></div>
+                          <label>  Password
+                          </label>
+                          <input type="password" placeholder="Password" name="password">
+                          <div class="form-error field-name-password"></div>
+                          <input class="btn" type="submit" value="Login">
+                          <div class="form-error field-all"></div>
+                        </form>
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <!-- column terminal -->
+                    <h1 class="node header-1 hi3 span1 span1" style="font-size:20px;">  Sign Up
+                            </h1>
+                </div>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row">
+        <!-- column terminal -->
+        <form class="form-default hi17 span4 span4 offset7" action="{% url "webapp.form_receivers.sign_up" %}" method="POST">  {% csrf_token %}
+                      <label>  Email Address
+                      </label>
+                      <input type="text" placeholder="Email Address" name="email">
+                      <div class="form-error field-name-email"></div>
+                      <label>  Name
+                      </label>
+                      <input type="text" placeholder="Name" name="name">
+                      <div class="form-error field-name-name"></div>
+                      <label>  Password
+                      </label>
+                      <input type="password" placeholder="Password" name="password">
+                      <div class="form-error field-name-password"></div>
+                      <input class="btn" type="submit" value="Sign Up">
+                      <div class="form-error field-all"></div>
+                    </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<div class="footer">
+  <div class="container">
+    <ul class="footer-links">
+      <li><a href="{% url "webapp.pages.homepage" %}" class="menu-item">Homepage</a></li>
+    </ul>
+    <p class="footer-text muted">Powered by Appcubator</p>
+  </div>
+  <div class="clearfix"></div>
+</div>
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
