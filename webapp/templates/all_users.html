@@ -28,21 +28,13 @@
     <div class="row hoff2">
         <!-- column terminal -->
         <div class="default-list hi46 span5 span5 offset3" style="position:relative;">  {% for obj in users %}
-              <div class="row" style="display:block; position:relative; height:225px;">  <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 0px; left: 95px; text-align:left ">  {{ obj.username }}
+              <div class="row" style="display:block; position:relative; height:105px;">  <p class="node normal-text" style="; position: absolute; height: 45px; width:276px; top: 11px; left: 104px; text-align:left ">  {{ obj.first_name }} {{ obj.last_name }}
                 </p>
-                <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 45px; left: 95px; text-align:left ">  {{ obj.first_name }}
-                </p>
-                <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 90px; left: 95px; text-align:left ">  {{ obj.last_name }}
-                </p>
-                <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 135px; left: 95px; text-align:left ">  {{ obj.email }}
-                </p>
-                <div style="; position: absolute; height: 90px; width:90px; top: 5px; left: 0px; text-align:left ">  <img class="node img-normal" src="{{ obj.profile_pic }}">
+                <div style="; position: absolute; height: 90px; width:90px; top: 8px; left: 7px; text-align:left ">  <img class="node img-normal" src="{{ obj.profile_pic }}">
                 </div>
-                <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 180px; left: 95px; text-align:left ">  {{ obj.about_me }}
-                </p>
               </div>
               {% empty %}
-              <div style="display:block; position:relative; height:225px;">  List is empty.
+              <div style="display:block; position:relative; height:105px;">  List is empty.
               </div>
               {% endfor %}
             </div>

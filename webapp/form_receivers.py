@@ -22,7 +22,7 @@ def login(request):
     form = LoginForm(None, data=request.POST)
     if form.is_valid():
         auth_login(request, form.get_user())
-        return JsonResponse(data={'redirect_to': reverse('webapp.pages.edit_profile')})
+        return JsonResponse(data={'redirect_to': reverse('webapp.pages.user_profile', args=(request.user.id, ))})
 
     return JsonResponse(errors=form.errors)
 
