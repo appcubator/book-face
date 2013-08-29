@@ -7,7 +7,7 @@
   <div class="navbar-inner">
     <a class="brand" href="/" id="brand-name">Bookface</a>
     <ul class="nav" id="items">
-      <li><a href="{% url "webapp.pages.homepage" %}">Homepage</a></li>
+      <li><a href="{% url "webapp.pages.all_users" %}">Users</a></li>
       {% if user.is_authenticated %}
       <li class="logout-item pull-right"><a id="logout" href="{% url "django.contrib.auth.views.logout" %}">Logout</a></li>
       {% endif %}
