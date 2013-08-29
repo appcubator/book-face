@@ -8,7 +8,8 @@ from import_export import resources as export
 
 
 class User(AbstractUser):
-    pass
+    profile_pic = models.TextField(blank=True)
+    about_me = models.TextField(blank=True)
 
 
 class UserDataResource(export.ModelResource):

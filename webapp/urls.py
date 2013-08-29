@@ -10,12 +10,16 @@ from django.views.generic import RedirectView
 
 urlpatterns = patterns('webapp.pages',
                        url(r'^$', 'homepage'),
+                       url(r'^profile/(\d+)/$', 'user_profile'),
+                       url(r'^Edit_profile/$', 'edit_profile'),
+                       url(r'^All_users/$', 'all_users'),
                        )
 
 
 urlpatterns += patterns('webapp.form_receivers',
                         url('^__form_receiver/loginform/$', 'login'),
                         url('^__form_receiver/shortsignupform/$', 'sign_up'),
+                        url('^__form_receiver/edit_user/$', 'edit_user'),
                         )
 
 

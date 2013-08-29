@@ -9,7 +9,7 @@ from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from webapp.emailer import send_email, send_template_email
-from webapp.forms import LoginForm, ShortSignupForm
+from webapp.forms import Edit_User, LoginForm, ShortSignupForm
 from webapp.models import User
 from webapp.utils import JsonResponse
 
@@ -37,7 +37,19 @@ def sign_up(request):
                             password=request.POST['password'])
         auth_login(request, user)
 
-        redirect_url = reverse('webapp.pages.homepage')
+        redirect_url = reverse('webapp.pages.user_profile', args=(None.id, ))
+        return JsonResponse(data={'redirect_to': redirect_url})
+
+    return JsonResponse(errors=form.errors)
+
+
+@require_POST
+def edit_user(request):
+    form = Edit_User(request.POST, instance=request.user)
+    if form.is_valid():
+        user = form.save()
+
+        redirect_url = reverse('webapp.pages.user_profile', args=(user.id, ))
         return JsonResponse(data={'redirect_to': redirect_url})
 
     return JsonResponse(errors=form.errors)

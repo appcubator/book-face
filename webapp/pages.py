@@ -15,3 +15,28 @@ def homepage(request):
     page_context = {}
 
     return render(request, "homepage.html", page_context)
+
+
+@require_GET
+def user_profile(request, user_id):
+    page_context = {}
+    page_context['user'] = get_object_or_404(User, pk=user_id)
+
+    return render(request, "user_profile.html", page_context)
+
+
+@require_GET
+def edit_profile(request):
+    page_context = {}
+
+    return render(request, "edit_profile.html", page_context)
+
+
+@require_GET
+def all_users(request):
+    page_context = {}
+
+    page_context['users'] = User.objects.exclude(
+        username='admin').order_by('-date_joined')
+
+    return render(request, "all_users.html", page_context)

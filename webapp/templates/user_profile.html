@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block navbar %}
+<div class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/" id="brand-name">Bookface</a>
+    <ul class="nav" id="items">
+      <li><a href="{% url "webapp.pages.homepage" %}">Homepage</a></li>
+      {% if user.is_authenticated %}
+      <li class="logout-item pull-right"><a id="logout" href="{% url "django.contrib.auth.views.logout" %}">Logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <!-- row -->
+    <div class="row hoff3">
+        <!-- column -->
+        <div class="span2 offset1">
+                <!-- row -->
+        <div class="row">
+            <!-- column terminal -->
+            <div class=" hi13 span2 span2">  <img class="node img-normal" src="{{ user.profile_pic }}">
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <!-- column terminal -->
+            <div class=" hi2 span2 span2">  <a class="node blue-link" href="{% url "webapp.pages.edit_profile" %}">  Edit profile
+                  </a>
+                </div>
+        </div>
+        </div>
+        <!-- column -->
+        <div class="span7 offset1">
+                <!-- row -->
+        <div class="row">
+            <!-- column terminal -->
+            <h1 class="node header-1 hi3 span7 span7" style="font-size:20px;">  {{ user.first_name }} {{ user.last_name }}
+            </h1>
+        </div>
+        <!-- row -->
+        <div class="row hoff2">
+            <!-- column terminal -->
+            <p class="node normal-text hi2 span4 span4">  About me:
+                </p>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <!-- column terminal -->
+            <p class="node normal-text hi8 span6 span6" style="; padding: 0px 15px 0px 15px">  {{ user.about_me }}
+                    </p>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<div class="footer">
+  <div class="container">
+    <ul class="footer-links">
+    </ul>
+    <p class="footer-text muted">Powered by Appcubator</p>
+  </div>
+  <div class="clearfix"></div>
+</div>
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

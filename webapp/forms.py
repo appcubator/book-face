@@ -34,3 +34,14 @@ class ShortSignupForm(forms.Form):
             0], " ".join(name_tokens[1:])
         user.save()
         return user
+
+
+class Edit_User(forms.ModelForm):
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
+    profile_pic = forms.CharField(required=True)
+    about_me = forms.CharField(required=True)
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'profile_pic', 'about_me')

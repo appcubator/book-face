@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Edit profile{% endblock %}
+
+{% block navbar %}
+<div class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/" id="brand-name">Bookface</a>
+    <ul class="nav" id="items">
+      <li><a href="{% url "webapp.pages.homepage" %}">Homepage</a></li>
+      {% if user.is_authenticated %}
+      <li class="logout-item pull-right"><a id="logout" href="{% url "django.contrib.auth.views.logout" %}">Logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <!-- row -->
+    <div class="row hoff2">
+        <!-- column terminal -->
+        <form class="form-default hi22 span4 span4 offset4" action="{% url "webapp.form_receivers.edit_user" %}" method="POST">  {% csrf_token %}
+          <label>  First Name
+          </label>
+          <input type="text" name="first_name" value="{{ request.user.first_name }}">
+          <div class="form-error field-name-first_name"></div>
+          <label>  Last Name
+          </label>
+          <input type="text" name="last_name" value="{{ request.user.last_name }}">
+          <div class="form-error field-name-last_name"></div>
+          <label>  Profile Pic
+          </label>
+          <div>  <div class="upload-img btn" data-name="profile_pic">  Update image
+            </div>
+            <input type="hidden" name="profile_pic" value="{{ request.user.profile_pic }}">
+          </div>
+          <div class="form-error field-name-profile_pic"></div>
+          <label>  About me
+          </label>
+          <textarea name="about_me">  {{ request.user.about_me }}
+          </textarea>
+          <div class="form-error field-name-about_me"></div>
+          <input class="btn" type="submit" value="Submit">
+          <div class="form-error field-all"></div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<div class="footer">
+  <div class="container">
+    <ul class="footer-links">
+    </ul>
+    <p class="footer-text muted">Powered by Appcubator</p>
+  </div>
+  <div class="clearfix"></div>
+</div>
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

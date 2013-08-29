@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}All users{% endblock %}
+
+{% block navbar %}
+<div class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/" id="brand-name">Bookface</a>
+    <ul class="nav" id="items">
+      <li><a href="{% url "webapp.pages.homepage" %}">Homepage</a></li>
+      {% if user.is_authenticated %}
+      <li class="logout-item pull-right"><a id="logout" href="{% url "django.contrib.auth.views.logout" %}">Logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <!-- row -->
+    <div class="row hoff1">
+        <!-- column terminal -->
+        <h1 class="node header-1 hi3 span6 span6 offset3">  People you may know
+        </h1>
+    </div>
+    <!-- row -->
+    <div class="row hoff2">
+        <!-- column terminal -->
+        <div class="default-list hi46 span5 span5 offset3" style="position:relative;">  {% for obj in users %}
+              <div class="row" style="display:block; position:relative; height:225px;">  <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 0px; left: 95px; text-align:left ">  {{ obj.username }}
+                </p>
+                <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 45px; left: 95px; text-align:left ">  {{ obj.first_name }}
+                </p>
+                <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 90px; left: 95px; text-align:left ">  {{ obj.last_name }}
+                </p>
+                <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 135px; left: 95px; text-align:left ">  {{ obj.email }}
+                </p>
+                <div style="; position: absolute; height: 90px; width:90px; top: 5px; left: 0px; text-align:left ">  <img class="node img-normal" src="{{ obj.profile_pic }}">
+                </div>
+                <p class="node normal-text" style="; position: absolute; height: 45px; width:305px; top: 180px; left: 95px; text-align:left ">  {{ obj.about_me }}
+                </p>
+              </div>
+              {% empty %}
+              <div style="display:block; position:relative; height:225px;">  List is empty.
+              </div>
+              {% endfor %}
+            </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<div class="footer">
+  <div class="container">
+    <ul class="footer-links">
+    </ul>
+    <p class="footer-text muted">Powered by Appcubator</p>
+  </div>
+  <div class="clearfix"></div>
+</div>
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
