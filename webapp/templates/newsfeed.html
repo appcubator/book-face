@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Newsfeed{% endblock %}
+
+{% block navbar %}
+<div class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/" id="brand-name">Book face</a>
+    <ul class="nav" id="items">
+      {% if user.is_authenticated %}
+      <li class="logout-item pull-right"><a id="logout" href="{% url "django.contrib.auth.views.logout" %}">Logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <!-- row -->
+    <div class="row hoff3">
+        <!-- column terminal -->
+        <div class=" hi3 span7 span7 offset3" style="; text-align: center">  <h1 class="node header-1">  Wall posts
+          </h1>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="row hoff2">
+        <!-- column terminal -->
+        <div class="default-list hi46 span7 span7 offset3" style="position:relative;">  {% for obj in wall_posts %}
+              <div class="row" style="display:block; position:relative; height:150px;">  <p class="node normal-text" style="; position: absolute; height: 89px; width:328px; top: 9px; left: 108px; text-align:left ">  {{ obj.text }}
+                </p>
+                <div style="; position: absolute; height: 78px; width:86px; top: 27px; left: 11px; text-align:left ">  <img class="node img-normal" src="{{ obj.writer.profile_pic }}">
+                </div>
+                <div style="; position: absolute; height: 79px; width:86px; top: 26px; left: 463px; text-align:left ">  <img class="node img-normal" src="{{ obj.wall_owner.profile_pic }}">
+                </div>
+                <p class="node gray-text" style="; position: absolute; height: 22px; width:120px; top: 2px; left: 10px; text-align:left ">  From
+                </p>
+                <p class="node gray-text" style="; position: absolute; height: 26px; width:88px; top: 1px; left: 463px; text-align:right ">  To
+                </p>
+                <p class="node gray-text" style="; position: absolute; height: 27px; width:244px; top: 109px; left: 11px; text-align:left ">  {{ obj.writer.first_name }}
+                </p>
+                <p class="node gray-text" style="; position: absolute; height: 26px; width:274px; top: 110px; left: 278px; text-align:right ">  {{ obj.wall_owner.first_name }}
+                </p>
+              </div>
+              {% empty %}
+              <div style="display:block; position:relative; height:150px;">  List is empty.
+              </div>
+              {% endfor %}
+            </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<div class="footer">
+  <div class="container">
+    <ul class="footer-links">
+    </ul>
+    <p class="footer-text muted">Powered by Appcubator</p>
+  </div>
+  <div class="clearfix"></div>
+</div>
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

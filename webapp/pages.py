@@ -51,3 +51,13 @@ def wall_post_page(request, wall_post_id):
     page_context['wall_post'] = get_object_or_404(Wall_post, pk=wall_post_id)
 
     return render(request, "wall_post_page.html", page_context)
+
+
+@require_GET
+def newsfeed(request):
+    page_context = {}
+
+    page_context['wall_posts'] = Wall_post.objects.all().order_by(
+        '-date_created')
+
+    return render(request, "newsfeed.html", page_context)

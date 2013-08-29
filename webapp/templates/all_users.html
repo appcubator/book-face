@@ -25,20 +25,27 @@
         </h1>
     </div>
     <!-- row -->
-    <div class="row hoff2">
+    <div class="row">
+        <!-- column terminal -->
+        <div class=" hi2 span3 span3 offset6" style="; text-align: right">  <a class="node blue-link" href="{% url "webapp.pages.newsfeed" %}">  ( See what they're talking about )
+              </a>
+            </div>
+    </div>
+    <!-- row -->
+    <div class="row">
         <!-- column terminal -->
         <div class="default-list hi46 span5 span5 offset3" style="position:relative;">  {% for obj in users %}
-              <div class="row" style="display:block; position:relative; height:105px;">  <div style="; position: absolute; height: 90px; width:90px; top: 8px; left: 7px; text-align:left ">  <img class="node img-height-fixed" src="{{ obj.profile_pic }}">
+                  <div class="row" style="display:block; position:relative; height:105px;">  <div style="; position: absolute; height: 90px; width:90px; top: 8px; left: 7px; text-align:left ">  <img class="node img-height-fixed" src="{{ obj.profile_pic }}">
+                    </div>
+                    <div style="; position: absolute; height: 36px; width:275px; top: 26px; left: 108px; text-align:left ">  <a class="node link-1" href="{% url "webapp.pages.user_profile" obj.id %}">  {{ obj.first_name }} {{ obj.last_name }}
+                      </a>
+                    </div>
+                  </div>
+                  {% empty %}
+                  <div style="display:block; position:relative; height:105px;">  List is empty.
+                  </div>
+                  {% endfor %}
                 </div>
-                <div style="; position: absolute; height: 36px; width:275px; top: 26px; left: 108px; text-align:left ">  <a class="node link-1" href="{% url "webapp.pages.user_profile" obj.id %}">  {{ obj.first_name }} {{ obj.last_name }}
-                  </a>
-                </div>
-              </div>
-              {% empty %}
-              <div style="display:block; position:relative; height:105px;">  List is empty.
-              </div>
-              {% endfor %}
-            </div>
     </div>
 {% endblock %}
 

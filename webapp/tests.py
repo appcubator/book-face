@@ -21,3 +21,7 @@ class StaticPagesTestCase(TestCase):
     def test_all_users(self):
         r = self.c.get('/All_users/')
         self.assertIn(r.status_code, (200, 302))
+
+    def test_newsfeed(self):
+        r = self.c.get('/Newsfeed/')
+        self.assertIn(r.status_code, (200, 302))

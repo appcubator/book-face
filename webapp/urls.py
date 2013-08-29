@@ -14,6 +14,7 @@ urlpatterns = patterns('webapp.pages',
                        url(r'^Edit_profile/$', 'edit_profile'),
                        url(r'^All_users/$', 'all_users'),
                        url(r'^Wall_post_Page/(\d+)/$', 'wall_post_page'),
+                       url(r'^Newsfeed/$', 'newsfeed'),
                        )
 
 
