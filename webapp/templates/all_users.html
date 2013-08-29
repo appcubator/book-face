@@ -30,7 +30,7 @@
         <div class="default-list hi46 span5 span5 offset3" style="position:relative;">  {% for obj in users %}
               <div class="row" style="display:block; position:relative; height:105px;">  <p class="node normal-text" style="; position: absolute; height: 45px; width:276px; top: 11px; left: 104px; text-align:left ">  {{ obj.first_name }} {{ obj.last_name }}
                 </p>
-                <div style="; position: absolute; height: 90px; width:90px; top: 8px; left: 7px; text-align:left ">  <img class="node img-normal" src="{{ obj.profile_pic }}">
+                <div style="; position: absolute; height: 90px; width:90px; top: 8px; left: 7px; text-align:left ">  <img class="node img-height-fixed" src="{{ obj.profile_pic }}">
                 </div>
               </div>
               {% empty %}
