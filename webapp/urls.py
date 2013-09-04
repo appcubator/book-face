@@ -15,6 +15,8 @@ urlpatterns = patterns('webapp.pages',
                        url(r'^All_users/$', 'all_users'),
                        url(r'^Wall_post_Page/(\d+)/$', 'wall_post_page'),
                        url(r'^Newsfeed/$', 'newsfeed'),
+                       url(r'^Friendship_Page/(\d+)/$', 'friendship_page'),
+                       url(r'^My_Friends/$', 'my_friends'),
                        )
 
 
@@ -23,6 +25,8 @@ urlpatterns += patterns('webapp.form_receivers',
                         url('^__form_receiver/shortsignupform/$', 'sign_up'),
                         url('^__form_receiver/create_wall_post/(\\d+)/$',
                             'create_wall_post'),
+                        url('^__form_receiver/create_friendship/(\\d+)/$',
+                            'create_friendship'),
                         url('^__form_receiver/edit_user/$', 'edit_user'),
                         )
 

@@ -2,7 +2,7 @@
 
 from django.test import TestCase
 from django.test.client import Client
-from webapp.models import User, Wall_post
+from webapp.models import Friendship, User, Wall_post
 
 
 class StaticPagesTestCase(TestCase):
@@ -24,4 +24,8 @@ class StaticPagesTestCase(TestCase):
 
     def test_newsfeed(self):
         r = self.c.get('/Newsfeed/')
+        self.assertIn(r.status_code, (200, 302))
+
+    def test_my_friends(self):
+        r = self.c.get('/My_Friends/')
         self.assertIn(r.status_code, (200, 302))

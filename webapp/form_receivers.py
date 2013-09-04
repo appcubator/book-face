@@ -9,8 +9,8 @@ from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from webapp.emailer import send_email, send_template_email
-from webapp.forms import Create_Wall_post, Edit_User, LoginForm, ShortSignupForm
-from webapp.models import User, Wall_post
+from webapp.forms import Create_Friendship, Create_Wall_post, Edit_User, LoginForm, ShortSignupForm
+from webapp.models import Friendship, User, Wall_post
 from webapp.utils import JsonResponse
 
 
@@ -57,6 +57,26 @@ def create_wall_post(request, user_id):
         wall_post.save()  # persist the object to the DB
 
         redirect_url = reverse('webapp.pages.homepage')
+        return JsonResponse(data={'redirect_to': redirect_url})
+
+    return JsonResponse(errors=form.errors)
+
+
+@require_POST
+def create_friendship(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    form = Create_Friendship(request.POST)
+    if form.is_valid():
+        friendship = form.save(commit=False)
+
+        # set foreign keys
+        friendship.requester = request.user
+        friendship.accepter = user
+
+        friendship.save()  # persist the object to the DB
+
+        redirect_url = reverse(
+            'webapp.pages.friendship_page', args=(friendship.id, ))
         return JsonResponse(data={'redirect_to': redirect_url})
 
     return JsonResponse(errors=form.errors)

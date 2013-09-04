@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}My Friends{% endblock %}
+
+{% block navbar %}
+<div class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/" id="brand-name">Book face</a>
+    <ul class="nav" id="items">
+      {% if user.is_authenticated %}
+      <li class="logout-item pull-right"><a id="logout" href="{% url "django.contrib.auth.views.logout" %}">Logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <!-- row -->
+    <div class="row hoff3">
+        <!-- column terminal -->
+        <h1 class="node header-1 hi3 span4 span4 offset3">  My Friends
+        </h1>
+    </div>
+    <!-- row -->
+    <div class="row hoff2">
+        <!-- column terminal -->
+        <div class="default-list hi46 span6 span6 offset2" style="position:relative;">  {% for obj in friendships %}
+              <div class="row" style="display:block; position:relative; height:120px;">  <div style="; position: absolute; height: 86px; width:88px; top: 16px; left: 28px; text-align:left ">  <img class="node img-normal" src="{{ obj.accepter.profile_pic }}">
+                </div>
+                <div style="; position: absolute; height: 36px; width:351px; top: 21px; left: 129px; text-align:left ">  <a class="node link-1" href="{% url "webapp.pages.user_profile" obj.accepter.id %}">  {{ obj.accepter.first_name }} {{ obj.accepter.last_name }}
+                  </a>
+                </div>
+              </div>
+              {% empty %}
+              <div style="display:block; position:relative; height:120px;">  List is empty.
+              </div>
+              {% endfor %}
+            </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<div class="footer">
+  <div class="container">
+    <ul class="footer-links">
+      <li><a href="http://appcubator.com" class="menu-item">Powered by Appcubator</a></li>
+    </ul>
+    <p class="footer-text muted">Copyright 2013</p>
+  </div>
+  <div class="clearfix"></div>
+</div>
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render, render_to_resp
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
-from webapp.models import User, Wall_post
+from webapp.models import Friendship, User, Wall_post
 from webapp.utils import get_results
 
 
@@ -61,3 +61,22 @@ def newsfeed(request):
         '-date_created')
 
     return render(request, "newsfeed.html", page_context)
+
+
+@require_GET
+def friendship_page(request, friendship_id):
+    page_context = {}
+    page_context['friendship'] = get_object_or_404(
+        Friendship, pk=friendship_id)
+
+    return render(request, "friendship_page.html", page_context)
+
+
+@require_GET
+def my_friends(request):
+    page_context = {}
+
+    page_context['friendships'] = Friendship.objects.all().filter(
+        requester=request.user.id).order_by('-date_created')
+
+    return render(request, "my_friends.html", page_context)

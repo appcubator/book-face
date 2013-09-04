@@ -17,6 +17,15 @@ class Wall_post(models.Model):
         settings.AUTH_USER_MODEL, related_name='posts_on_wall', null=True, blank=True)
 
 
+class Friendship(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+    requester = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='friend_requested', null=True, blank=True)
+    accepter = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='friend_accepted', null=True, blank=True)
+
+
 class User(AbstractUser):
     profile_pic = models.TextField(blank=True)
     about_me = models.TextField(blank=True)
@@ -26,6 +35,12 @@ class Wall_postDataResource(export.ModelResource):
 
     class Meta:
         model = Wall_post
+
+
+class FriendshipDataResource(export.ModelResource):
+
+    class Meta:
+        model = Friendship
 
 
 class UserDataResource(export.ModelResource):

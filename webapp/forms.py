@@ -2,7 +2,7 @@
 
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm as LoginForm, UserCreationForm
-from webapp.models import User, Wall_post
+from webapp.models import Friendship, User, Wall_post
 
 
 class ShortSignupForm(forms.Form):
@@ -42,6 +42,13 @@ class Create_Wall_post(forms.ModelForm):
     class Meta:
         model = Wall_post
         fields = ('text',)
+
+
+class Create_Friendship(forms.ModelForm):
+
+    class Meta:
+        model = Friendship
+        fields = ()
 
 
 class Edit_User(forms.ModelForm):

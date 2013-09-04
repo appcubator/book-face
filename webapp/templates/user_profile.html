@@ -52,9 +52,20 @@
         </div>
         <!-- row -->
         <div class="row">
-            <!-- column terminal -->
-            <p class="node normal-text hi8 span6 span6" style="; padding: 0px 15px 0px 15px">  {{ user.about_me }}
-                    </p>
+            <!-- column -->
+            <div class="span7">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- column terminal -->
+                        <div class="span7 hi8" style="position:relative">  <p class="node normal-text hi8 span6" style="; position: absolute; top: 0px; left: 0px;; padding: 0px 15px 0px 15px">  {{ user.about_me }}
+                          </p>
+                          <form class="form-default hi3 span3" style="; position: absolute; top: 75px; left: 320px;" action="{% url "webapp.form_receivers.create_friendship" user.id %}" method="POST">  {% csrf_token %}
+                            <input class="btn" type="submit" value="Add as Friend">
+                            <div class="form-error field-all"></div>
+                          </form>
+                        </div>
+                    </div>
+            </div>
         </div>
         </div>
     </div>

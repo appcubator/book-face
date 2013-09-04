@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Friendship Page{% endblock %}
+
+{% block navbar %}
+<div class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/" id="brand-name">Book face</a>
+    <ul class="nav" id="items">
+      {% if user.is_authenticated %}
+      <li class="logout-item pull-right"><a id="logout" href="{% url "django.contrib.auth.views.logout" %}">Logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    <!-- row -->
+    <div class="row hoff2">
+        <!-- column terminal -->
+        <h1 class="node header-1 hi5 span6 span6 offset2">  {{ friendship.accepter.first_name }} {{ friendship.accepter.last_name }}
+        </h1>
+    </div>
+    <!-- row -->
+    <div class="row hoff3">
+        <!-- column terminal -->
+        <div class=" hi14 span3 span3 offset2">  <img class="node img-normal" src="{{ friendship.accepter.profile_pic }}">
+            </div>
+        <!-- column terminal -->
+        <p class="node normal-text hi2 span4 span4 offset1">  You are friends :)
+            </p>
+    </div>
+{% endblock %}
+
+{% block footer %}
+<div class="footer">
+  <div class="container">
+    <ul class="footer-links">
+      <li><a href="http://appcubator.com" class="menu-item">Powered by Appcubator</a></li>
+    </ul>
+    <p class="footer-text muted">Copyright 2013</p>
+  </div>
+  <div class="clearfix"></div>
+</div>
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
