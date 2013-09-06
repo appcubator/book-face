@@ -37,7 +37,7 @@ def sign_up(request):
                             password=request.POST['password'])
         auth_login(request, user)
 
-        redirect_url = reverse('webapp.pages.user_profile', args=(user.id, ))
+        redirect_url = reverse('webapp.pages.edit_profile')
         return JsonResponse(data={'redirect_to': redirect_url})
 
     return JsonResponse(errors=form.errors)
